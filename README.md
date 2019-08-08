@@ -110,18 +110,18 @@ function call_control_COMMAND_NAME(f_call_control_id, f_INPUT1, ...){
 
 There are several aspects of this function that deserve some attention:
 
-- `Function Input Parameters`: to execute every Telnyx Call Control Command you’ll need to feed your function with the following: the `Call Control ID`; and the input parameters, specific to the body of the Command you’re executing. Having these set as function input parameters will make it generic enough to reuse in different use cases:
+`Function Input Parameters`: to execute every Telnyx Call Control Command you’ll need to feed your function with the following: the `Call Control ID`; and the input parameters, specific to the body of the Command you’re executing. Having these set as function input parameters will make it generic enough to reuse in different use cases:
 ```js
 function call_control_COMMAND_NAME(f_call_control_id, f_INPUT)
 ```
 All Telnyx Call Control Commands will be expecting the `Call Control ID` except `Dial`. There you’ll get a new one for the leg generated as response.
 
-- `Name of the Call Control Command`: as detailed [here](https://developers.telnyx.com/docs/api/v1/overview), the Command name is part of the API URL. In our code we call that the `action` name, and will feed the POST Request URL later:
+`Name of the Call Control Command`: as detailed [here](https://developers.telnyx.com/docs/api/v1/overview), the Command name is part of the API URL. In our code we call that the `action` name, and will feed the POST Request URL later:
 ```js
 var cc_action = ‘COMMAND_NAME’
 ```
 
-- `Building the Telnyx Call Control Command`: once you have the Command name defined, you should have all the necessary info to build the complete Telnyx Call Control Command:
+`Building the Telnyx Call Control Command`: once you have the Command name defined, you should have all the necessary info to build the complete Telnyx Call Control Command:
 ```js
 var options = {
     url: 'https://api.telnyx.com/calls/' 
@@ -140,7 +140,7 @@ var options = {
 In this example you can see that `Call Control ID` and the Action name will feed the URL of the API, both Telnyx Key and Telnyx Secret feed the Authentication headers, and the body will be formed with all the different input parameters  received for that specific Command. 
 
 
-- `Calling the Telnyx Call Control Command`: Having the request  `headers` and `options`/`body` set, the only thing left is to execute the `POST Request` to execute the command. 
+`Calling the Telnyx Call Control Command`: Having the request  `headers` and `options`/`body` set, the only thing left is to execute the `POST Request` to execute the command. 
 For that we are using making use of the node's `request` module:
 ```js
  request.post(options,function(err,resp,body){
