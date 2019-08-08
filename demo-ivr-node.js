@@ -1,7 +1,7 @@
-// ================================================ Telnyx Media Forking ================================================
+// ================================================= Telnyx Simple IVR =================================================
 
 // Description:
-// This simple app is creating a simple IVR to test Telnyx Call Control Media Forking
+// This simple app is creating a simple IVR to test Telnyx Call Control
 
 // Author:
 // Filipe Leitão (filipe@telnyx.com)
