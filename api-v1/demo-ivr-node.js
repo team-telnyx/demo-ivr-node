@@ -13,10 +13,6 @@ const g_appName = "demo-telnyx-ivr";
 const g_ivr_voice = 'female';
 const g_ivr_language = 'en-GB';
 
-// IVR Redirect Options
-const g_account_exec = '<pstn_number_here>';
-const g_sales_eng = '<pstn_number_here>';
-
 // ======= Naming Conventions =======
 // = g_xxx: global variable
 // = f_xxx: function variable
@@ -31,10 +27,13 @@ var request = require('request');
 
 // =============== Telnyx Account Details ===============
 
-const g_telnyx_key = "<telnyx_key_here>"
-const g_telnyx_secret = "<telnyx_key_here>"
+var configs = fs.readFileSync("telnyx-account.json");
+var jsonConfigs = JSON.parse(configs);
 
-const g_serviceName = "IVRApp"
+const g_telnyx_api_key_v1 = jsonConfigs.telnyx_api_key_v1;
+const g_telnyx_api_secret_v1 = jsonConfigs.telnyx_api_secret_v1;
+const g_pstn_number_account_exec = jsonConfigs.pstn_number_account_exec;
+const g_pstn_number_sales_eng = jsonConfigs.pstn_number_sales_eng;
 
 
 // =============== RESTful API Creation ===============
@@ -74,8 +73,8 @@ function call_control_transfer(f_call_control_id, f_dest, f_orig) {
             '/actions/' +
             cc_action,
         auth: {
-            username: g_telnyx_key,
-            password: g_telnyx_secret
+            username: f_telnyx_api_key_v1,
+            password: f_telnyx_api_secret_v1
         },
         form: {
             to: f_dest,
@@ -110,8 +109,8 @@ function call_control_answer_call(f_call_control_id, f_client_state_s) {
             l_cc_action,
 
         auth: {
-            username: g_telnyx_key,
-            password: g_telnyx_secret
+            username: f_telnyx_api_key_v1,
+            password: f_telnyx_api_secret_v1
         },
 
         form: {
@@ -139,8 +138,8 @@ function call_control_speak(f_call_control_id, f_tts_text) {
             '/actions/' +
             cc_action,
         auth: {
-            username: g_telnyx_key,
-            password: g_telnyx_secret
+            username: f_telnyx_api_key_v1,
+            password: f_telnyx_api_secret_v1
         },
         form: {
             payload: f_tts_text,
@@ -173,8 +172,8 @@ function call_control_gather_using_speak(f_call_control_id, f_tts_text, f_gather
             '/actions/' +
             l_cc_action,
         auth: {
-            username: g_telnyx_key,
-            password: g_telnyx_secret
+            username: f_telnyx_api_key_v1,
+            password: f_telnyx_api_secret_v1
         },
         form: {
             payload: f_tts_text,
@@ -208,8 +207,8 @@ function call_control_hangup(f_call_control_id) {
             l_cc_action,
 
         auth: {
-            username: g_telnyx_key,
-            password: g_telnyx_secret
+            username: f_telnyx_api_key_v1,
+            password: f_telnyx_api_secret_v1
         },
 
         form: {}
@@ -325,11 +324,11 @@ rest.post('/' + g_appName + '/ivr-demo', function (req, res) {
 
                 if (l_ivr_option == '1') {
                     // Dial Account Executive
-                    call_control_transfer(l_call_control_id, g_account_exec, req.body.payload.from);
+                    call_control_transfer(l_call_control_id, g_pstn_number_account_exec, req.body.payload.from);
 
                 } else if (l_ivr_option == '2') {
                     // Dial Sales Engineer
-                    call_control_transfer(l_call_control_id, g_sales_eng, req.body.payload.from);
+                    call_control_transfer(l_call_control_id, g_pstn_number_sales_eng, req.body.payload.from);
                 } else {
                     // Go to Extensions
                 }

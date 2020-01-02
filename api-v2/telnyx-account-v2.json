@@ -1,0 +1,5 @@
+{
+    "telnyx_api_auth_v2": "<your-api-v2-key-here>",
+    "pstn_number_account_exec": "<pstn_number_here>",
+    "pstn_number_sales_eng": "<pstn_number_here>"
+}

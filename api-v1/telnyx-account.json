@@ -1,0 +1,6 @@
+{
+    "telnyx_api_key_v1": "<your_api_v1_key_here>",
+    "telnyx_api_secret_v1": "<your_api_v1_secret_here>",
+    "pstn_number_account_exec": "<pstn_number_here>",
+    "pstn_number_sales_eng": "<pstn_number_here>"
+}
