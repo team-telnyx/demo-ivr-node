@@ -11,7 +11,7 @@ With all the basic Telnyx Call Control Commands set, we are ready to consume the
 
 1. handle an incoming call
 2. greet and use text-to-speech to indicate all options
-3. digest DTMS to navigate the user through the voice menus and redirect the call to an agent
+3. digest DTMF to navigate the user through the voice menus and redirect the call to an agent
 
 
 <p align="center">
