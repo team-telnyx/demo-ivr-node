@@ -250,7 +250,7 @@ rest.post('/' + g_appName + '/ivr-demo', function (req, res) {
 
 
     // Call Innitiated >> Answer Call
-    if (l_hook_event_type == 'call_initiated') {
+    if (l_hook_event_type == 'call.initiated') {
 
         if (req.body.payload.direction == 'incoming')
             call_control_answer_call(g_telnyx_api_auth_v2, l_call_control_id, null);
@@ -259,7 +259,7 @@ rest.post('/' + g_appName + '/ivr-demo', function (req, res) {
 
         res.end();
 
-    } else if (l_hook_event_type == 'call_answered') {
+    } else if (l_hook_event_type == 'call.answered') {
 
         if (!l_client_state_64)
             // No State >> Incoming >> Gather Input
@@ -274,17 +274,17 @@ rest.post('/' + g_appName + '/ivr-demo', function (req, res) {
         res.end();
 
         // Speach Ended >> Do Nothing
-    } else if (l_hook_event_type == 'speak_ended') {
+    } else if (l_hook_event_type == 'call.speak.ended') {
 
         res.end();
 
         // Call Bridged >> Do Nothing
-    } else if (l_hook_event_type == 'call_bridged') {
+    } else if (l_hook_event_type == 'call.bridged') {
 
         res.end();
 
         // Gather Ended >> Proccess DTMF Input
-    } else if (l_hook_event_type == 'gather_ended') {
+    } else if (l_hook_event_type == 'call.gather.ended') {
 
         // Receive DTMF Option
         var l_ivr_option = req.body.payload.digits;
