@@ -68,7 +68,7 @@ function call_control_transfer(f_telnyx_api_auth_v2, f_call_control_id, f_dest, 
     var cc_action = 'transfer'
 
     var options = {
-        url: 'https://api.telnyx.com/calls/' +
+        url: 'https://api.telnyx.com/v2/calls/' +
             f_call_control_id +
             '/actions/' +
             cc_action,
@@ -104,7 +104,7 @@ function call_control_answer_call(f_telnyx_api_auth_v2, f_call_control_id, f_cli
 
 
     var options = {
-        url: 'https://api.telnyx.com/calls/' +
+        url: 'https://api.telnyx.com/v2/calls/' +
             f_call_control_id +
             '/actions/' +
             l_cc_action,
@@ -134,7 +134,7 @@ function call_control_speak(f_telnyx_api_auth_v2, f_call_control_id, f_tts_text)
     var cc_action = 'speak'
 
     var options = {
-        url: 'https://api.telnyx.com/calls/' +
+        url: 'https://api.telnyx.com/v2/calls/' +
             f_call_control_id +
             '/actions/' +
             cc_action,
@@ -169,7 +169,7 @@ function call_control_gather_using_speak(f_telnyx_api_auth_v2, f_call_control_id
         l_client_state_64 = Buffer.from(f_client_state_s).toString('base64');
 
     var options = {
-        url: 'https://api.telnyx.com/calls/' +
+        url: 'https://api.telnyx.com/v2/calls/' +
             f_call_control_id +
             '/actions/' +
             l_cc_action,
@@ -204,7 +204,7 @@ function call_control_hangup(f_telnyx_api_auth_v2, f_call_control_id) {
     var l_cc_action = 'hangup';
 
     var options = {
-        url: 'https://api.telnyx.com/calls/' +
+        url: 'https://api.telnyx.com/v2/calls/' +
             f_call_control_id +
             '/actions/' +
             l_cc_action,
